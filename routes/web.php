@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('http_post_request', [HttpController::class, 'store']);
+// Route::post('http_post_request', [HttpController::class, 'store']);
 
 // Route::get('/', function () {
 //     return view('welcome');

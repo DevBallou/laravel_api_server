@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('v1')->group(function () {
+    require __DIR__ . '/api/v1/users.php';
+    require __DIR__ . '/api/v1/posts.php';
+    require __DIR__ . '/api/v1/comments.php';
+});
 
 // Route::controller(AuthController::class)->group(function () {
 //     Route::post('login', 'login');
@@ -22,9 +27,3 @@ use Illuminate\Support\Facades\Route;
 //     Route::post('logout', 'logout');
 //     Route::post('user', 'user');
 // });
-// Route::apiResource('users', AuthController::class);
-Route::get('/users', [AuthController::class, 'index']);
-Route::get('/users/{user}', [AuthController::class, 'show']);
-Route::post('/users', [AuthController::class, 'store']);
-Route::patch('/users/{user}', [AuthController::class, 'update']);
-Route::delete('/users/{user}', [AuthController::class, 'destroy']);

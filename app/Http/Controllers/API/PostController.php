@@ -14,15 +14,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'index'
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store()
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'store'
+        ]);
     }
 
     /**
@@ -30,15 +34,19 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'show'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Post $post)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'update'
+        ]);
     }
 
     /**
@@ -46,6 +54,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'destroy'
+        ]);
     }
 }

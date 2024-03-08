@@ -14,15 +14,19 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'index'
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCommentRequest $request)
+    public function store()
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'store'
+        ]);
     }
 
     /**
@@ -30,15 +34,19 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'show'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCommentRequest $request, Comment $comment)
+    public function update(Comment $comment)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'update'
+        ]);
     }
 
     /**
@@ -46,6 +54,8 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        //
+        return new \Illuminate\Http\JsonResponse([
+            'data' => 'destroy'
+        ]);
     }
 }
