@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,20 +16,18 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::query()->get();
-        return new \Illuminate\Http\JsonResponse([
-            'data' => $posts
-        ]);
+        return PostResource::collection($posts);
     }
 
     /**
      * Store a newly created resource in storage.
      * 
      * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return PostResource
      */
     public function store(Request $request)
     {
-        DB::transaction(function () use ($request) {
+        $created = DB::transaction(function () use ($request) {
             $created = Post::query()->create([
                 'title' => $request->title,
                 'body' => $request->body,
@@ -40,19 +37,21 @@ class PostController extends Controller
             return $created;
         });
 
-        // return new \Illuminate\Http\JsonResponse([
-        //     'data' => $created
-        // ]);
+        return new PostResource($created);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        return new \Illuminate\Http\JsonResponse([
-            'data' => $post
-        ]);
+        $post = Post::find($id);
+        if (!$post) {
+            return response()->json([
+                'message' => 'Post not found'
+            ], 404);
+        }
+        return new PostResource($post);
     }
 
     /**
@@ -74,9 +73,7 @@ class PostController extends Controller
             ], 400);
         }
 
-        return new \Illuminate\Http\JsonResponse([
-            'data' => $post
-        ]);
+        return new PostResource($post);
     }
 
     /**

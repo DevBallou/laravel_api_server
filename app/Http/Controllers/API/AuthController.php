@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,8 @@ class AuthController extends Controller
 
     public function index()
     {
-        return new \Illuminate\Http\JsonResponse([
-            'data' => 'index'
-        ]);
+        $users = User::all();
+        return UserResource::collection($users);
     }
 
     /**
@@ -30,9 +30,7 @@ class AuthController extends Controller
      */
     public function show(User $user)
     {
-        return new \Illuminate\Http\JsonResponse([
-            'data' => $user
-        ]);
+        return new UserResource($user);
     }
 
     /**
@@ -41,11 +39,14 @@ class AuthController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store()
+    public function store(Request $request)
     {
-        return new \Illuminate\Http\JsonResponse([
-            'data' => 'created'
+        $created = User::query()->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
         ]);
+        return new UserResource($created);
     }
 
     /**
@@ -54,11 +55,22 @@ class AuthController extends Controller
      * @param  \App\Models\User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        return new \Illuminate\Http\JsonResponse([
-            'data' => 'update'
+        $updated = $user->update([
+            'name' => $request->name ?? $user->name,
+            'email' => $request->email ?? $user->email,
         ]);
+
+        if (!$updated) {
+            return new \Illuminate\Http\JsonResponse([
+                'errors' => [
+                    'Failed to update model.'
+                ]
+            ], 400);
+        }
+
+        return new UserResource($user);
     }
 
     /**
@@ -69,8 +81,18 @@ class AuthController extends Controller
      */
     public function destroy(User $user)
     {
+        $deleted = $user->forceDelete();
+
+        if (!$deleted) {
+            return new \Illuminate\Http\JsonResponse([
+                'errors' => [
+                    'Could not delelete resource.'
+                ]
+            ]);
+        }
+
         return new \Illuminate\Http\JsonResponse([
-            'data' => 'delete'
+            'data' => 'Successfully'
         ]);
     }
 
