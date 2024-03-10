@@ -7,6 +7,7 @@ use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -23,16 +24,25 @@ class PostController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * 
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $created = Post::query()->create([
-            'title' => $request->title,
-            'body' => $request->body,
-        ]);
-        return new \Illuminate\Http\JsonResponse([
-            'data' => $created
-        ]);
+        DB::transaction(function () use ($request) {
+            $created = Post::query()->create([
+                'title' => $request->title,
+                'body' => $request->body,
+            ]);
+
+            $created->users()->sync($request->user_ids);
+            return $created;
+        });
+
+        // return new \Illuminate\Http\JsonResponse([
+        //     'data' => $created
+        // ]);
     }
 
     /**
