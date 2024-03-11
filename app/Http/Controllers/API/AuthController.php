@@ -16,9 +16,11 @@ class AuthController extends Controller
     //     $this->middleware('auth:api', ['except' => ['login', 'register']]);
     // }
 
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $pageSize = $request->page_size ?? 10;
+        $users = User::query()->paginate($pageSize);
+
         return UserResource::collection($users);
     }
 
