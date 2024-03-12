@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exceptions\GeneralJsonException;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
@@ -16,6 +17,8 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        // report('Something went wrong.');
+        // abort(404);
         $pageSize = $request->page_size ?? 10;
         $posts = Post::query()->paginate($pageSize);
 

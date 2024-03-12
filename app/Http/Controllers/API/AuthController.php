@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\Models\User\UserCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Models\User;
@@ -19,6 +20,7 @@ class AuthController extends Controller
 
     public function index(Request $request)
     {
+        event(new UserCreated(User::factory()->make()));
         $pageSize = $request->page_size ?? 10;
         $users = User::query()->paginate($pageSize);
 
