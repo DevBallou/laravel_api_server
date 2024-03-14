@@ -7,7 +7,7 @@ Route::group(
         'middleware' => [
             // 'auth',
         ],
-        'prefix' => 'heyaa',
+        // 'prefix' => 'heyaa',
         'name' => 'comments.',
         'namespace' => "\App\Http\Controllers\API",
     ],

@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::apiResource('users', App\Http\Controllers\API\AuthController::class);
 
-Route::prefix('turbo')
-    ->name('users.')
+Route::name('users.')
     ->namespace("App\Http\Controllers\API")
     ->group(function () {
         // Route::get('/users', 'AuthController@index')->name('index');

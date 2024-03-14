@@ -18,7 +18,7 @@ class PostRepository extends BaseRepository
             ]);
 
             throw_if(!$created, GeneralJsonException::class, 'Failed to create Post.');
-
+            // event(new PostCreated($created));
             if ($userIds = data_get($attributes, 'user_ids')) {
                 $created->users()->sync($userIds);
             }
