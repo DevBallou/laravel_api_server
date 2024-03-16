@@ -11,11 +11,9 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $table = 'posts';
-    protected $primarykey = 'id';
     protected $fillable = [
         'title',
-        'body'
+        'body',
     ];
 
     // protected $guarded = [
@@ -46,7 +44,7 @@ class Post extends Model
 
     public function comments(): HasMany
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'post_id');
     }
 
     public function users(): BelongsToMany

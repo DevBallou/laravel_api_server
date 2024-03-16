@@ -1,0 +1,101 @@
+[33mcommit b9c25fe9b1b2f8139c6ca3e222509d1457c3308c[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Thu Mar 14 13:42:43 2024 +0000
+
+    Testing API routes | Feature Testing
+
+[33mcommit 5ffc2a5d13d286de0595d452c5f383592e84ca07[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Thu Mar 14 10:33:51 2024 +0000
+
+    Unit Testing Essentials
+
+[33mcommit c3f3f411168a510d58cde17e04c5c2262ee79d5c[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Wed Mar 13 11:59:51 2024 +0000
+
+    Sending email
+
+[33mcommit 1e7353aef7794276c1c07751ff4566db5e031669[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Tue Mar 12 13:29:56 2024 +0000
+
+    Exception | Event & event listener & subscriber
+
+[33mcommit 70b191ca309f6fe5b34c0b4d2e04cbe300373f91[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Mon Mar 11 16:40:45 2024 +0000
+
+    Repository pattern
+
+[33mcommit 4f1b29e2f2926c0d237a2990c9289c2fd756fa2e[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Mon Mar 11 10:27:56 2024 +0000
+
+    Pagination
+
+[33mcommit fc7c76e19a3d8b309856c6a32cf4f0f51c1abad7[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Sun Mar 10 21:52:41 2024 +0000
+
+    Laravel Resource Class | API Resource
+
+[33mcommit 61048ff9e9fb0b336a433e783c5aa2b7dbd9eb73[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Sun Mar 10 12:43:20 2024 +0000
+
+    DB Transaction
+
+[33mcommit a40a01f4c8dd8ad09a6bfeb358c14075fc626d96[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Sun Mar 10 11:47:39 2024 +0000
+
+    Essential Eloquent Methods & Properties
+
+[33mcommit e78143e12d5f3d76196cb368facd696eaae63465[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Sat Mar 9 19:08:50 2024 +0100
+
+    Recursively load PHP files in a directory
+
+[33mcommit d72811e657a12e4863c602504d459fb6bf8a75b6[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Fri Mar 8 16:35:28 2024 +0100
+
+    Laravel API Routes Best Practices
+
+[33mcommit 9bdd66837aafe06fbaaf49ddf10c28f009346a39[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Thu Mar 7 13:55:38 2024 +0100
+
+    Controllers
+
+[33mcommit be310fb6f5493d3823bd77048f03b4b0b40135ef[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Wed Mar 6 14:00:09 2024 +0100
+
+    RESTful API RouteDesign and Laravel Routes
+
+[33mcommit a72a73485cf983a07fe8d69444fb3067d9486b11[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Wed Mar 6 11:26:55 2024 +0100
+
+    Seeding relationships
+
+[33mcommit 6b77333296e3e33a410eb14a0641fcef160c1407[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Tue Mar 5 21:21:22 2024 +0100
+
+    All about models and relationships
+
+[33mcommit fbfcf6e46575320c0efd6905589af8f11aa7600b[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Tue Mar 5 16:05:16 2024 +0100
+
+    Seed and Factories Done
+
+[33mcommit 20042d1e650b3a85369b9aaea74f01d418ef4394[m
+Author: BAALLOU Hicham <baallou1996h@gmail.com>
+Date:   Tue Mar 5 13:39:47 2024 +0100
+
+    first commit

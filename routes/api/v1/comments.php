@@ -8,7 +8,7 @@ Route::group(
             // 'auth',
         ],
         // 'prefix' => 'heyaa',
-        'name' => 'comments.',
+        'as' => 'comments.',
         'namespace' => "\App\Http\Controllers\API",
     ],
     function () {
