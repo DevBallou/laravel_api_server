@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Exceptions\GeneralJsonException;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use App\Http\Resources\PostResource;
 use App\Models\Post;
 use App\Repositories\PostRepository;
@@ -28,10 +29,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      * 
-     * @param  \Illuminate\Http\Request $request
+     * @param  StorePostRequest $request
      * @return PostResource
      */
-    public function store(Request $request, PostRepository $repository)
+    public function store(StorePostRequest $request, PostRepository $repository)
     {
         $created = $repository->create($request->only([
             'title',

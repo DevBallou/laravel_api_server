@@ -27,7 +27,6 @@ class Handler extends ExceptionHandler
     {
         $this->reportable(function (GeneralJsonException $e) {
             //
-            dump('123456');
         });
 
         $this->renderable(function (GeneralJsonException $e) {
