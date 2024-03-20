@@ -1,0 +1,817 @@
+openapi: 3.0.3
+info:
+  title: Livepost
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/v1/comments:
+    get:
+      summary: 'Display a listing of comments.'
+      operationId: displayAListingOfComments
+      description: 'Gets a list of comments.'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Size per page. Defaults to 20.'
+          example: 20
+          required: false
+          schema:
+            type: integer
+            description: 'Size per page. Defaults to 20.'
+            example: 20
+        -
+          in: query
+          name: page
+          description: 'Page to view.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to view.'
+            example: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      body: null
+                      user_id: null
+                      post_id: null
+                    -
+                      id: null
+                      body: null
+                      user_id: null
+                      post_id: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        body: null
+                        user_id: null
+                        post_id: null
+                      -
+                        id: null
+                        body: null
+                        user_id: null
+                        post_id: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        body:
+                          type: string
+                          example: null
+                        user_id:
+                          type: string
+                          example: null
+                        post_id:
+                          type: string
+                          example: null
+      tags:
+        - 'Comment Management'
+      security: []
+    post:
+      summary: 'Store a newly created comment in storage.'
+      operationId: storeANewlyCreatedCommentInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    body: null
+                    user_id: null
+                    post_id: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      body:
+                        type: string
+                        example: null
+                      user_id:
+                        type: string
+                        example: null
+                      post_id:
+                        type: string
+                        example: null
+      tags:
+        - 'Comment Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: array
+                  description: 'Body of the comment.'
+                  example:
+                    - 'This comment is super beautiful'
+                  items:
+                    type: string
+                user_id:
+                  type: integer
+                  description: 'the author id of the comment.'
+                  example: 1
+                post_id:
+                  type: integer
+                  description: 'the post id that the comment belongs to.'
+                  example: 1
+              required:
+                - body
+                - user_id
+                - post_id
+      security: []
+  '/api/v1/comments/{id}':
+    get:
+      summary: 'Display the specified comment.'
+      operationId: displayTheSpecifiedComment
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    body: null
+                    user_id: null
+                    post_id: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      body:
+                        type: string
+                        example: null
+                      user_id:
+                        type: string
+                        example: null
+                      post_id:
+                        type: string
+                        example: null
+      tags:
+        - 'Comment Management'
+      security: []
+    patch:
+      summary: 'Update the specified comment in storage.'
+      operationId: updateTheSpecifiedCommentInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    body: null
+                    user_id: null
+                    post_id: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      body:
+                        type: string
+                        example: null
+                      user_id:
+                        type: string
+                        example: null
+                      post_id:
+                        type: string
+                        example: null
+      tags:
+        - 'Comment Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  type: array
+                  description: 'Body of the comment.'
+                  example:
+                    - 'This comment is super beautiful'
+                  items:
+                    type: string
+                user_id:
+                  type: integer
+                  description: 'the author id of the comment.'
+                  example: 1
+                post_id:
+                  type: integer
+                  description: 'the post id that the comment belongs to.'
+                  example: 1
+      security: []
+    delete:
+      summary: 'Remove the specified comment from storage.'
+      operationId: removeTheSpecifiedCommentFromStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: success
+                properties:
+                  data:
+                    type: string
+                    example: success
+      tags:
+        - 'Comment Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Comment ID'
+        example: 20
+        required: true
+        schema:
+          type: integer
+  /api/v1/posts:
+    get:
+      summary: 'Display a listing of posts.'
+      operationId: displayAListingOfPosts
+      description: 'Gets a list of posts.'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Size per page. Defaults to 20.'
+          example: 20
+          required: false
+          schema:
+            type: integer
+            description: 'Size per page. Defaults to 20.'
+            example: 20
+        -
+          in: query
+          name: page
+          description: 'Page to view.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to view.'
+            example: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      title: SED
+                      body: []
+                      created_at: ''
+                      updated_at: ''
+                    -
+                      id: null
+                      title: MAGNI
+                      body: []
+                      created_at: ''
+                      updated_at: ''
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        title: SED
+                        body: []
+                        created_at: ''
+                        updated_at: ''
+                      -
+                        id: null
+                        title: MAGNI
+                        body: []
+                        created_at: ''
+                        updated_at: ''
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        title:
+                          type: string
+                          example: SED
+                        body:
+                          type: array
+                          example: []
+                        created_at:
+                          type: string
+                          example: ''
+                        updated_at:
+                          type: string
+                          example: ''
+      tags:
+        - 'Post Management'
+      security: []
+    post:
+      summary: 'Store a newly created post in storage.'
+      operationId: storeANewlyCreatedPostInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    title: QUIA
+                    body: []
+                    created_at: ''
+                    updated_at: ''
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      title:
+                        type: string
+                        example: QUIA
+                      body:
+                        type: array
+                        example: []
+                      created_at:
+                        type: string
+                        example: ''
+                      updated_at:
+                        type: string
+                        example: ''
+      tags:
+        - 'Post Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Title of the post.'
+                  example: 'Amazing Post'
+                body:
+                  type: array
+                  description: 'Body of the post.'
+                  example:
+                    - 'This post is super beautiful'
+                  items:
+                    type: string
+                user_ids:
+                  type: array
+                  description: 'the author ids of the post.'
+                  example:
+                    - 1
+                    - 2
+                  items:
+                    type: integer
+              required:
+                - title
+                - body
+                - user_ids
+      security: []
+  '/api/v1/posts/{id}':
+    get:
+      summary: 'Display the specified post.'
+      operationId: displayTheSpecifiedPost
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    title: DOLOREM
+                    body: []
+                    created_at: ''
+                    updated_at: ''
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      title:
+                        type: string
+                        example: DOLOREM
+                      body:
+                        type: array
+                        example: []
+                      created_at:
+                        type: string
+                        example: ''
+                      updated_at:
+                        type: string
+                        example: ''
+      tags:
+        - 'Post Management'
+      security: []
+    patch:
+      summary: 'Update the specified post in storage.'
+      operationId: updateTheSpecifiedPostInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    title: UT
+                    body: []
+                    created_at: ''
+                    updated_at: ''
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      title:
+                        type: string
+                        example: UT
+                      body:
+                        type: array
+                        example: []
+                      created_at:
+                        type: string
+                        example: ''
+                      updated_at:
+                        type: string
+                        example: ''
+      tags:
+        - 'Post Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Title of the post.'
+                  example: 'Amazing Post'
+                body:
+                  type: array
+                  description: 'Body of the post.'
+                  example:
+                    - 'This post is super beautiful'
+                  items:
+                    type: string
+                user_ids:
+                  type: array
+                  description: 'the author ids of the post.'
+                  example:
+                    - 1
+                    - 2
+                  items:
+                    type: integer
+              required:
+                - title
+                - body
+                - user_ids
+      security: []
+    delete:
+      summary: 'Remove the specified post from storage.'
+      operationId: removeTheSpecifiedPostFromStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: success
+                properties:
+                  data:
+                    type: string
+                    example: success
+      tags:
+        - 'Post Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Post ID'
+        example: 18
+        required: true
+        schema:
+          type: integer
+  /api/v1/users:
+    get:
+      summary: 'Display a listing of users.'
+      operationId: displayAListingOfUsers
+      description: 'Gets a list of users.'
+      parameters:
+        -
+          in: query
+          name: page_size
+          description: 'Size per page. Defaults to 20.'
+          example: 20
+          required: false
+          schema:
+            type: integer
+            description: 'Size per page. Defaults to 20.'
+            example: 20
+        -
+          in: query
+          name: page
+          description: 'Page to view.'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'Page to view.'
+            example: 1
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: null
+                      name: 'Dr. Christopher Baumbach III'
+                      email: okuneva.christelle@example.net
+                    -
+                      id: null
+                      name: 'Spencer Ratke'
+                      email: americo22@example.com
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: null
+                        name: 'Dr. Christopher Baumbach III'
+                        email: okuneva.christelle@example.net
+                      -
+                        id: null
+                        name: 'Spencer Ratke'
+                        email: americo22@example.com
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: null
+                        name:
+                          type: string
+                          example: 'Dr. Christopher Baumbach III'
+                        email:
+                          type: string
+                          example: okuneva.christelle@example.net
+      tags:
+        - 'User Management'
+      security: []
+    post:
+      summary: 'Store a newly created user in storage.'
+      operationId: storeANewlyCreatedUserInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    name: 'Christopher Williamson MD'
+                    email: schulist.burdette@example.net
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: 'Christopher Williamson MD'
+                      email:
+                        type: string
+                        example: schulist.burdette@example.net
+      tags:
+        - 'User Management'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Name of the user.'
+                  example: 'John Doe'
+                email:
+                  type: string
+                  description: 'Email of the user.'
+                  example: doe@doe.com
+              required:
+                - name
+                - email
+      security: []
+  '/api/v1/users/{id}':
+    get:
+      summary: 'Display the specified user.'
+      operationId: displayTheSpecifiedUser
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    name: 'Norbert Hartmann'
+                    email: ruecker.ramon@example.org
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: 'Norbert Hartmann'
+                      email:
+                        type: string
+                        example: ruecker.ramon@example.org
+      tags:
+        - 'User Management'
+      security: []
+    patch:
+      summary: 'Update the specified user in storage.'
+      operationId: updateTheSpecifiedUserInStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: null
+                    name: 'Royce Rice'
+                    email: wokon@example.org
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: null
+                      name:
+                        type: string
+                        example: 'Royce Rice'
+                      email:
+                        type: string
+                        example: wokon@example.org
+      tags:
+        - 'User Management'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Name of the user.'
+                  example: 'John Doe'
+                email:
+                  type: string
+                  description: 'Email of the user.'
+                  example: doe@doe.com
+      security: []
+    delete:
+      summary: 'Remove the specified user from storage.'
+      operationId: removeTheSpecifiedUserFromStorage
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: success
+                properties:
+                  data:
+                    type: string
+                    example: success
+      tags:
+        - 'User Management'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'User ID'
+        example: 10
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: 'Comment Management'
+    description: 'APIs to manage comments'
+  -
+    name: 'Post Management'
+    description: 'APIs to manage post.'
+  -
+    name: 'User Management'
+    description: "\nAPIs to manage the User resource."
