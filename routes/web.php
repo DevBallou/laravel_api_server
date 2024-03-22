@@ -4,6 +4,7 @@ use App\Http\Controllers\HttpController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,26 +23,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/shared/posts/{post}', function (\Illuminate\Http\Request $request, \App\Models\Post $post) {
+
+    return "specially made just for you ;) Post id: {$post->id}";
+})->name('shared.post')->middleware('signed');
+
 if (\Illuminate\Support\Facades\App::environment('local')) {
 
-    // App::setLocale('fr');
-    $trans = \Illuminate\Support\Facades\Lang::get('auth.failed');
-    $trans = __('auth.password');
-    $trans = __('auth.throttle', ['seconds' => 5]);
-    // current locale
-    dump(\Illuminate\Support\Facades\App::currentLocale());
-    dump(App::islocale('en'));
+    // Route::get('/shared/videos/{video}', function (\Illuminate\Http\Request $request, $video) {
 
-    $trans = trans_choice('auth.pants', 2);
-    $trans = trans_choice('auth.apples', 2, ['baskets' => 4]);
-    $trans = __('auth.welcome', ['name' => 'hicham']);
+    //     // if (!$request->hasValidSignature()) {
+    //     //     abort(401);
+    //     // }
 
-    dd($trans);
+    //     return 'git gud';
+    // })->name('share-video')->middleware('signed');
 
     Route::get('/playground', function () {
-        $user = \App\Models\User::factory()->make();
-        \Illuminate\Support\Facades\Mail::to($user)
-            ->send(new \App\Mail\WelcomeMail($user));
-        return null;
+        //
+        $url = URL::temporarySignedRoute('share-video', now()->addSeconds(30), [
+            'video' => 123
+        ]);
+
+        return $url;
     });
 }

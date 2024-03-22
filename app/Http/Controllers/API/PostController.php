@@ -10,7 +10,9 @@ use App\Models\Post;
 use App\Repositories\PostRepository;
 use App\Rules\IntegerArray;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Validator;
 
 /**
@@ -148,6 +150,28 @@ class PostController extends Controller
 
         return new \Illuminate\Http\JsonResponse([
             'data' => 'Successfully'
+        ]);
+    }
+
+    /**
+     * Share a specified post from storage.
+     * 
+     * @response 200 {
+     *      "data": "signed url..."
+     * }
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Models\Post $post
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function share(Request $request, Post $post)
+    {
+        $url = URL::temporarySignedRoute('shared.post', now()->addDays(30), [
+            'post' => $post->id,
+        ]);
+
+        return new \Illuminate\Http\JsonResponse([
+            'data' => $url,
         ]);
     }
 }
