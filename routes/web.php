@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\HttpController;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +23,21 @@ Route::get('/', function () {
 });
 
 if (\Illuminate\Support\Facades\App::environment('local')) {
+
+    // App::setLocale('fr');
+    $trans = \Illuminate\Support\Facades\Lang::get('auth.failed');
+    $trans = __('auth.password');
+    $trans = __('auth.throttle', ['seconds' => 5]);
+    // current locale
+    dump(\Illuminate\Support\Facades\App::currentLocale());
+    dump(App::islocale('en'));
+
+    $trans = trans_choice('auth.pants', 2);
+    $trans = trans_choice('auth.apples', 2, ['baskets' => 4]);
+    $trans = __('auth.welcome', ['name' => 'hicham']);
+
+    dd($trans);
+
     Route::get('/playground', function () {
         $user = \App\Models\User::factory()->make();
         \Illuminate\Support\Facades\Mail::to($user)
